@@ -10,8 +10,10 @@ namespace MvcMusicStore
 {
     public class MvcApplication : System.Web.HttpApplication
     {
+        //进行网站的初始化
         protected void Application_Start()
         {
+            System.Data.Entity.Database.SetInitializer(new MvcMusicStore.Models.SampleData());
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);

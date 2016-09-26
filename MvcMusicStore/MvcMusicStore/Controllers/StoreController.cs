@@ -12,7 +12,13 @@ namespace MvcMusicStore.Controllers
         // GET: Store
         public ActionResult Index()
         {
-            return View();
+            var genres = new List<Genre>
+            {
+                new Genre { Name="Disco"},
+                new Genre { Name="Jazz"},
+                new Genre { Name="Rock"}
+            };
+            return View(genres);
         }
 
         /// <summary>
@@ -20,12 +26,17 @@ namespace MvcMusicStore.Controllers
         /// </summary>
         /// <param name="genre">流派</param>
         /// <returns></returns>
-        public string Browse(string genre)
+        public ActionResult Browse(string genre)
         {
-            string message = HttpUtility.HtmlEncode("Store.Browse, Genre = " + genre);
-            return message;
+            var genreModel = new Genre { Name = genre };
+            return View(genreModel);
         }
 
+        /// <summary>
+        /// 专辑详情页
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public ActionResult Details(int id)
         {
             var album = new Album { Title = "Album " + id };
